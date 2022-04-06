@@ -1,17 +1,41 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "(Windows) Debug",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/target/debug/bfr.exe",
-            "args": [""],
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false
+            "externalConsole": false,
+            "preLaunchTask": "cargo build"
+        },
+        {
+            "name": "(Linux) Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/bfr",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "cargo build"
+        },
+        {
+            "name": "(Linux) Debug Unit Tests",
+            "type": "lldb",
+            "request": "launch",
+            "program": "cargo",
+            "args": ["test"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "cargo build"
         }
     ]
 }

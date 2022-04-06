@@ -55,15 +55,24 @@ fn main() {
 	let mut memory: [u8; 64000] = [0; 64000];
 	let mut dptr: usize = 0;
 	let mut iptr: usize = 0;
+	let upperbound = memory.len() - 1;
 	
 	while iptr < instructions.len() {
 	
 		let opc: char = instructions[iptr];
 
 		if opc == '>' {
-			dptr += 1;
+			if dptr == upperbound {
+				dptr = 0;
+			} else {
+				dptr += 1;
+			}
 		} else if opc == '<' {
-			dptr -= 1;
+			if dptr == 0 {
+				dptr = upperbound;
+			} else {
+				dptr -= 1;
+			}
 		} else if opc == '+' {
 			memory[dptr] = memory[dptr].wrapping_add(1);
 		} else if opc == '-' {
